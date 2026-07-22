@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ipfinder</title>
+  <style>
+    :root {
+      --bg: #f7f6f2;
+      --surface: #ffffff;
+      --surface-2: #f3f0ec;
+      --text: #28251d;
+      --muted: #6f6b63;
+      --border: #d9d5cd;
+      --primary: #01696f;
+      --primary-hover: #0c4e54;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 48px 20px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2.2rem;
+    }
+    p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+    .btn {
+      display: inline-block;
+      margin: 18px 0 22px;
+      padding: 14px 22px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+    .btn:hover { background: var(--primary-hover); }
+    .panel {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 18px;
+    }
+    pre, code {
+      font-family: Consolas, monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    ul { margin: 10px 0 0 20px; }
+    li { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>ipfinder</h1>
+      <p>This page hosts a downloadable Windows batch file that runs <code>tracert /d google.com</code>, saves the report to the Desktop, and opens the finished report in Notepad.</p>
+
+      <a class="btn" href="google-tracert-report.bat" download>Download Windows Tracert Tool</a>
+
+      <div class="panel">
+        <strong>How to use</strong>
+        <ul>
+          <li>Click the download button.</li>
+          <li>Save the file to your Windows computer.</li>
+          <li>Double-click the <code>.bat</code> file.</li>
+          <li>Wait for the trace to complete.</li>
+          <li>The report will open automatically in Notepad.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <strong>Expected repository files</strong>
+        <ul>
+          <li><code>index.html</code></li>
+          <li><code>google-tracert-report.bat</code></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <strong>Batch file contents</strong>
+        <pre>@echo off
+title Google Tracert Report
+
+for /f "usebackq delims=" %%i in (`powershell -NoProfile -Command "[Environment]::GetFolderPath('Desktop')"`) do set "DESKTOP=%%i"
+set "REPORT=%DESKTOP%\google-tracert-report.txt"
+
+echo GOOGLE TRACERT REPORT > "%REPORT%"
+echo ===================== >> "%REPORT%"
+echo Date: %DATE% %TIME% >> "%REPORT%"
+echo Command: tracert /d google.com >> "%REPORT%"
+echo. >> "%REPORT%"
+
+tracert /d google.com >> "%REPORT%" 2>&1
+
+notepad "%REPORT%"</pre>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

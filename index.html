@@ -78,7 +78,7 @@
       <h1>ipfinder</h1>
       <p>This page hosts a downloadable Windows batch file that runs <code>tracert /d google.com</code>, saves the report to the Desktop, and opens the finished report in Notepad.</p>
 
-      <a class="btn" href="google-tracert-report.bat" download>Download Windows Tracert Tool</a>
+      <a class="btn" href="Run-Tracert-Google.bat" download>Download Windows Tracert Tool</a>
 
       <div class="panel">
         <strong>How to use</strong>
@@ -95,7 +95,7 @@
         <strong>Expected repository files</strong>
         <ul>
           <li><code>index.html</code></li>
-          <li><code>google-tracert-report.bat</code></li>
+          <li><code>Run-Tracert-Google.bat</code></li>
         </ul>
       </div>
 
@@ -110,14 +110,4 @@ set "REPORT=%DESKTOP%\google-tracert-report.txt"
 echo GOOGLE TRACERT REPORT > "%REPORT%"
 echo ===================== >> "%REPORT%"
 echo Date: %DATE% %TIME% >> "%REPORT%"
-echo Command: tracert /d google.com >> "%REPORT%"
-echo. >> "%REPORT%"
-
-tracert /d google.com >> "%REPORT%" 2>&1
-
-notepad "%REPORT%"</pre>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+echo Command: tracert /d 
